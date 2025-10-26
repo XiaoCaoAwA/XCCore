@@ -1,15 +1,24 @@
 package xiaocaoawa.miencraft.plugin.xccobblemoncore;
 
+import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.command.ConsoleCommandSender;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import xiaocaoawa.miencraft.plugin.xccobblemoncore.inventory.XCInventory;
 import xiaocaoawa.miencraft.plugin.xccobblemoncore.util.CobblemonDetector;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public final class XCCobblemonCore extends JavaPlugin {
 
+    @Getter
+    private static final Map<Player, XCInventory> XCInventoryMap = new HashMap<>();
+
     @Override
     public void onEnable() {
-        // 检测Cobblemon模组是否存在
+
         if (!CobblemonDetector.checkCobblemonOrDisable(this)) {
             return;
         }

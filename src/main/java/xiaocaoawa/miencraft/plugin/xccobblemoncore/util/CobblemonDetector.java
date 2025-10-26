@@ -16,26 +16,12 @@ public final class CobblemonDetector {
     private CobblemonDetector() {}
 
     /**
-     * 检测Cobblemon模组是否可用
-     * 
-     * @return 如果Cobblemon模组存在且可用返回true，否则返回false
-     */
-    public static boolean isCobblemonAvailable() {
-        try {
-            Cobblemon.INSTANCE.getImplementation();
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
-    /**
      * 检测Cobblemon模组是否可用（带日志输出）
      * 
      * @param plugin 插件实例，用于输出日志
      * @return 如果Cobblemon模组存在且可用返回true，否则返回false
      */
-    public static boolean isCobblemonAvailable(Plugin plugin) {
+    private static boolean isCobblemonAvailable(Plugin plugin) {
         try {
             Cobblemon.INSTANCE.getImplementation();
             return true;
