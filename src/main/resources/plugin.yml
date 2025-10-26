@@ -1,0 +1,5 @@
+name: XCCobblemonCore
+version: '1.0'
+main: xiaocaoawa.miencraft.plugin.xccobblemoncore.XCCobblemonCore
+api-version: '1.21'
+authors: [ XiaoCaoAwA ]
