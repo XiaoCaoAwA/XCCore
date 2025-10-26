@@ -208,4 +208,27 @@ public final class BukkitNmsConverter {
         return pokemonEntity;
     }
 
+    /**
+     * 获取指定位置的服务器端生物群系
+     * 
+     * @param location 目标位置
+     * @return 服务器端生物群系对象
+     * @throws IllegalArgumentException 如果位置的世界为null
+     */
+    public static class_1959 getServerBiome(@NotNull Location location) {
+        World world = location.getWorld();
+        if (world == null) throw new IllegalArgumentException("World is null");
+        return getServerLevel(world).method_23753(toBlockPos(location)).comp_349();
+    }
+
+    /**
+     * 将Bukkit世界转换为服务器级别对象
+     * 
+     * @param world Bukkit世界对象
+     * @return 服务器级别对象
+     */
+    public static class_3218 getServerLevel(@NotNull World world) {
+        return class_3218.class.cast(((CraftWorld) world).getHandle());
+    }
+
 }
