@@ -5,11 +5,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryType;
-import org.bukkit.inventory.Inventory;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * @author XiaoCaoAwA
+ * @author langle__
  * @version 1.0
  */
 public class ClickInventoryContext extends CancelInventoryContext {
@@ -21,8 +20,8 @@ public class ClickInventoryContext extends CancelInventoryContext {
     private final InventoryAction action;
     private final InventoryType.SlotType slot_type;
 
-    public ClickInventoryContext(Player player, Inventory inventory, InventoryType.SlotType type, int slot, ClickType click, InventoryAction action, int hotbarButton) {
-        super(player, inventory);
+    public ClickInventoryContext(Player player, InventoryType.SlotType type, int slot, ClickType click, InventoryAction action, int hotbarButton) {
+        super(player);
         this.hotbarKey = hotbarButton;
         this.slot_type = type;
         this.slot = slot;
