@@ -1,11 +1,5 @@
-package xiaocaoawa.miencraft.plugin.xccobblemoncore.util;
+package xiaocaoawa.miencraft.plugin.xccobblemoncore.util.BukkitNmsUtil;
 
-import com.cobblemon.mod.common.CobblemonEntities;
-import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
-import com.cobblemon.mod.common.item.PokemonItem;
-import com.cobblemon.mod.common.pokeball.PokeBall;
-import com.cobblemon.mod.common.pokemon.Pokemon;
-import com.cobblemon.mod.common.pokemon.Species;
 import net.minecraft.*;
 import net.minecraft.server.level.EntityPlayer;
 import org.bukkit.Bukkit;
@@ -18,9 +12,7 @@ import org.bukkit.craftbukkit.v1_21_R1.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_21_R1.inventory.CraftItemStack;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -95,15 +87,7 @@ public final class BukkitNmsConverter {
         return class_1297.class.cast(((CraftEntity) entity).getHandle());
     }
 
-    /**
-     * 将Bukkit实体转换为宝可梦实体
-     * 
-     * @param entity Bukkit实体对象
-     * @return 宝可梦实体对象
-     */
-    public static PokemonEntity toPokemonEntity(@NotNull Entity entity) {
-        return PokemonEntity.class.cast(((CraftEntity) entity).getHandle());
-    }
+
 
     /**
      * 将NMS物品堆叠转换为Bukkit物品堆叠
@@ -127,44 +111,11 @@ public final class BukkitNmsConverter {
         return class_1799.class.cast(nmsItem);
     }
 
-    /**
-     * 根据宝可梦对象创建对应的Bukkit物品堆叠
-     * 
-     * @param pokemon 宝可梦对象
-     * @return 包含宝可梦信息的Bukkit物品堆叠
-     */
-    public static ItemStack getPokemonItem(@NotNull Pokemon pokemon) {
-        class_1799 item = PokemonItem.from(pokemon);
-        return toItemStack(item);
-    }
 
-    /**
-     * 根据宝可梦种族创建对应的Bukkit物品堆叠
-     * 
-     * @param species 宝可梦种族对象
-     * @return 包含宝可梦种族信息的Bukkit物品堆叠
-     */
-    public static ItemStack getPokemonItem(@NotNull Species species) {
-        class_1799 item = PokemonItem.from(species);
-        return toItemStack(item);
-    }
 
-    /**
-     * 根据精灵球类型创建对应的Bukkit物品堆叠
-     * 会自动添加所有物品标志以隐藏额外信息
-     * 
-     * @param pokeBall 精灵球类型
-     * @return 精灵球物品堆叠
-     */
-    public static ItemStack getPokeBallItem(PokeBall pokeBall) {
-        ItemStack item = toItemStack(pokeBall.stack(1));
-        ItemMeta meta = item.getItemMeta();
-        if (meta != null) {
-            meta.addItemFlags(ItemFlag.values());
-            item.setItemMeta(meta);
-        }
-        return item;
-    }
+
+
+
 
     /**
      * 获取默认世界的注册表访问器
@@ -187,26 +138,7 @@ public final class BukkitNmsConverter {
         return toWorld(world).method_30349();
     }
 
-    /**
-     * 在指定位置生成宝可梦实体
-     * 
-     * @param pokemon 要生成的宝可梦对象
-     * @param location 生成位置
-     * @return 生成的宝可梦实体
-     * @throws IllegalArgumentException 如果位置的世界为null
-     */
-    public static PokemonEntity spawnPokemon(@NotNull Pokemon pokemon, @NotNull Location location) {
-        World world = location.getWorld();
-        if (world == null) throw new IllegalArgumentException("World is null");
 
-        class_1937 level = BukkitNmsConverter.toWorld(world);
-
-        PokemonEntity pokemonEntity = new PokemonEntity(level, pokemon, CobblemonEntities.POKEMON);
-        pokemonEntity.method_5814(location.getX(), location.getY(), location.getZ());
-        level.method_8649(pokemonEntity);
-
-        return pokemonEntity;
-    }
 
     /**
      * 获取指定位置的服务器端生物群系

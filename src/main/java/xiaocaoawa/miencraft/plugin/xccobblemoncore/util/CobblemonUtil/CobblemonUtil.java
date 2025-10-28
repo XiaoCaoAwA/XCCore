@@ -1,4 +1,4 @@
-package xiaocaoawa.miencraft.plugin.xccobblemoncore.util;
+package xiaocaoawa.miencraft.plugin.xccobblemoncore.util.CobblemonUtil;
 
 import com.cobblemon.mod.common.api.moves.Move;
 import com.cobblemon.mod.common.api.moves.categories.DamageCategory;
@@ -15,7 +15,18 @@ import org.jetbrains.annotations.Nullable;
  * @author langle__
  * @version 1.0
  */
-public class PokemonUtil {
+public class CobblemonUtil {
+
+    // 静态初始化标志，控制功能是否可用
+    private static boolean initialized = false;
+
+    /**
+     * 设置初始化状态
+     * 只有在 Cobblemon 模组检测成功后才应该调用此方法
+     */
+    public static void setInitialized() {
+        initialized = true;
+    }
 
     public static String yes = "是";
     public static String no = "否";
@@ -44,7 +55,7 @@ public class PokemonUtil {
     public static String natureTypeSpecialDefenceSpecialAttackDown = "§a特防 §c特攻";
 
     // 私有构造器防止实例化
-    private PokemonUtil() {}
+    private CobblemonUtil() {}
 
     /**
      * 判断当前是否为空槽位
@@ -52,7 +63,8 @@ public class PokemonUtil {
      * @return 如果是空槽返回 "空槽"，否则返回 "精灵"
      */
     public static String isAirToString(@Nullable Pokemon pokemon) {
-        return BasePokemonUtil.isAir(pokemon) ? "空槽" : "精灵";
+        if (!initialized) return "空槽";
+        return CobblemonBasePokemonUtil.isAir(pokemon) ? "空槽" : "精灵";
     }
 
     /**
@@ -61,7 +73,8 @@ public class PokemonUtil {
      * @return 宝可梦名称字符串
      */
     public static String getSpeciesName(@NotNull Pokemon pokemon) {
-        return PokemonNameUtil.getPokemonName(BasePokemonUtil.getSpecies(pokemon));
+        if (!initialized) return "";
+        return CobblemonNameUtil.getPokemonName(CobblemonBasePokemonUtil.getSpecies(pokemon));
     }
 
     /**
@@ -70,7 +83,8 @@ public class PokemonUtil {
      * @return HP 努力值字符串
      */
     public static String getEvHPToString(@NotNull Pokemon pokemon) {
-        return String.valueOf(BasePokemonUtil.getEvHP(pokemon));
+        if (!initialized) return "0";
+        return String.valueOf(CobblemonBasePokemonUtil.getEvHP(pokemon));
     }
 
     /**
@@ -79,7 +93,8 @@ public class PokemonUtil {
      * @return 攻击努力值字符串
      */
     public static String getEvAttackToString(@NotNull Pokemon pokemon) {
-        return String.valueOf(BasePokemonUtil.getEvAttack(pokemon));
+        if (!initialized) return "0";
+        return String.valueOf(CobblemonBasePokemonUtil.getEvAttack(pokemon));
     }
 
     /**
@@ -88,7 +103,8 @@ public class PokemonUtil {
      * @return 防御努力值字符串
      */
     public static String getEvDefenceToString(@NotNull Pokemon pokemon) {
-        return String.valueOf(BasePokemonUtil.getEvDefence(pokemon));
+        if (!initialized) return "0";
+        return String.valueOf(CobblemonBasePokemonUtil.getEvDefence(pokemon));
     }
 
     /**
@@ -97,7 +113,8 @@ public class PokemonUtil {
      * @return 特攻努力值字符串
      */
     public static String getEvSpecialAttackToString(@NotNull Pokemon pokemon) {
-        return String.valueOf(BasePokemonUtil.getEvSpecialAttack(pokemon));
+        if (!initialized) return "0";
+        return String.valueOf(CobblemonBasePokemonUtil.getEvSpecialAttack(pokemon));
     }
 
     /**
@@ -106,7 +123,8 @@ public class PokemonUtil {
      * @return 特防努力值字符串
      */
     public static String getEvSpecialDefenceToString(@NotNull Pokemon pokemon) {
-        return String.valueOf(BasePokemonUtil.getEvSpecialDefence(pokemon));
+        if (!initialized) return "0";
+        return String.valueOf(CobblemonBasePokemonUtil.getEvSpecialDefence(pokemon));
     }
 
     /**
@@ -115,7 +133,8 @@ public class PokemonUtil {
      * @return 速度努力值字符串
      */
     public static String getEvSpeedToString(@NotNull Pokemon pokemon) {
-        return String.valueOf(BasePokemonUtil.getEvSpeed(pokemon));
+        if (!initialized) return "0";
+        return String.valueOf(CobblemonBasePokemonUtil.getEvSpeed(pokemon));
     }
 
     /**
@@ -124,7 +143,8 @@ public class PokemonUtil {
      * @return 总努力值百分比字符串
      */
     public static String getEvSumToString(@NotNull Pokemon pokemon) {
-        return String.valueOf(BasePokemonUtil.getEvSum(pokemon));
+        if (!initialized) return "0";
+        return String.valueOf(CobblemonBasePokemonUtil.getEvSum(pokemon));
     }
 
     /**
@@ -133,7 +153,8 @@ public class PokemonUtil {
      * @return HP 个体值字符串
      */
     public static String getIvHPToString(@NotNull Pokemon pokemon) {
-        return String.valueOf(BasePokemonUtil.getIvHP(pokemon));
+        if (!initialized) return "0";
+        return String.valueOf(CobblemonBasePokemonUtil.getIvHP(pokemon));
     }
 
     /**
@@ -142,7 +163,8 @@ public class PokemonUtil {
      * @return 攻击个体值字符串
      */
     public static String getIvAttackToString(@NotNull Pokemon pokemon) {
-        return String.valueOf(BasePokemonUtil.getIvAttack(pokemon));
+        if (!initialized) return "0";
+        return String.valueOf(CobblemonBasePokemonUtil.getIvAttack(pokemon));
     }
 
     /**
@@ -151,7 +173,8 @@ public class PokemonUtil {
      * @return 防御个体值字符串
      */
     public static String getIvDefenceToString(@NotNull Pokemon pokemon) {
-        return String.valueOf(BasePokemonUtil.getIvDefence(pokemon));
+        if (!initialized) return "0";
+        return String.valueOf(CobblemonBasePokemonUtil.getIvDefence(pokemon));
     }
 
     /**
@@ -160,7 +183,8 @@ public class PokemonUtil {
      * @return 特攻个体值字符串
      */
     public static String getIvSpecialAttackToString(@NotNull Pokemon pokemon) {
-        return String.valueOf(BasePokemonUtil.getIvSpecialAttack(pokemon));
+        if (!initialized) return "0";
+        return String.valueOf(CobblemonBasePokemonUtil.getIvSpecialAttack(pokemon));
     }
 
     /**
@@ -169,7 +193,8 @@ public class PokemonUtil {
      * @return 特防个体值字符串
      */
     public static String getIvSpecialDefenceToString(@NotNull Pokemon pokemon) {
-        return String.valueOf(BasePokemonUtil.getIvSpecialDefence(pokemon));
+        if (!initialized) return "0";
+        return String.valueOf(CobblemonBasePokemonUtil.getIvSpecialDefence(pokemon));
     }
 
     /**
@@ -178,7 +203,8 @@ public class PokemonUtil {
      * @return 速度个体值字符串
      */
     public static String getIvSpeedToString(@NotNull Pokemon pokemon) {
-        return String.valueOf(BasePokemonUtil.getIvSpeed(pokemon));
+        if (!initialized) return "0";
+        return String.valueOf(CobblemonBasePokemonUtil.getIvSpeed(pokemon));
     }
 
     /**
@@ -187,16 +213,18 @@ public class PokemonUtil {
      * @return 个体值总和百分比字符串
      */
     public static String getIvSumToString(@NotNull Pokemon pokemon) {
-        return String.valueOf(BasePokemonUtil.getIvSum(pokemon));
+        if (!initialized) return "0";
+        return String.valueOf(CobblemonBasePokemonUtil.getIvSum(pokemon));
     }
 
     /**
      * 判断是否为最大个体值组合
      *
-     * @return 是则返回“是”，否则返回“否”
+     * @return 是则返回"是"，否则返回"否"
      */
     public static String isMaxIvToString(@NotNull Pokemon pokemon) {
-        return BasePokemonUtil.isMaxIv(pokemon) ? yes : no;
+        if (!initialized) return no;
+        return CobblemonBasePokemonUtil.isMaxIv(pokemon) ? yes : no;
     }
 
     /**
@@ -205,7 +233,8 @@ public class PokemonUtil {
      * @return 剩余努力值字符串
      */
     public static String getRemainingEVsToString(@NotNull Pokemon pokemon) {
-        return String.valueOf(BasePokemonUtil.getRemainingEVs(pokemon));
+        if (!initialized) return "0";
+        return String.valueOf(CobblemonBasePokemonUtil.getRemainingEVs(pokemon));
     }
 
     /**
@@ -214,16 +243,18 @@ public class PokemonUtil {
      * @return 等级字符串
      */
     public static String getLevelToString(@NotNull Pokemon pokemon) {
-        return String.valueOf(BasePokemonUtil.getLevel(pokemon));
+        if (!initialized) return "1";
+        return String.valueOf(CobblemonBasePokemonUtil.getLevel(pokemon));
     }
 
     /**
      * 判断是否为闪光精灵
      *
-     * @return 是则返回“是”，否则返回“否”
+     * @return 是则返回"是"，否则返回"否"
      */
     public static String isShinyToString(@NotNull Pokemon pokemon) {
-        return BasePokemonUtil.isShiny(pokemon) ? yes : no;
+        if (!initialized) return no;
+        return CobblemonBasePokemonUtil.isShiny(pokemon) ? yes : no;
     }
 
     /**
@@ -232,7 +263,8 @@ public class PokemonUtil {
      * @return 能力名称字符串
      */
     public static String getAbilityName(@NotNull Pokemon pokemon) {
-        return PokemonNameUtil.getAbilityName(BasePokemonUtil.getAbility(pokemon));
+        if (!initialized) return "";
+        return CobblemonNameUtil.getAbilityName(CobblemonBasePokemonUtil.getAbility(pokemon));
     }
 
     /**
@@ -241,7 +273,8 @@ public class PokemonUtil {
      * @return 性别名称字符串
      */
     public static String getGenderName(@NotNull Pokemon pokemon) {
-        return PokemonNameUtil.getGenderName(BasePokemonUtil.getGender(pokemon));
+        if (!initialized) return "";
+        return CobblemonNameUtil.getGenderName(CobblemonBasePokemonUtil.getGender(pokemon));
     }
 
     /**
@@ -250,7 +283,8 @@ public class PokemonUtil {
      * @return 缩放系数字符串
      */
     public static String getScaleToString(@NotNull Pokemon pokemon) {
-        return String.valueOf(BasePokemonUtil.getScale(pokemon));
+        if (!initialized) return "1.0";
+        return String.valueOf(CobblemonBasePokemonUtil.getScale(pokemon));
     }
 
     /**
@@ -262,7 +296,8 @@ public class PokemonUtil {
      * @return 表单的名称
      */
     public static String getFormName(@NotNull Pokemon pokemon) {
-        return BasePokemonUtil.getForm(pokemon).getName();
+        if (!initialized) return "";
+        return CobblemonBasePokemonUtil.getForm(pokemon).getName();
     }
 
     /**
@@ -271,12 +306,14 @@ public class PokemonUtil {
      * @return 性格名称字符串
      */
     public static String getNatureName(@NotNull Pokemon pokemon) {
-        return PokemonNameUtil.getNatureName(BasePokemonUtil.getNature(pokemon));
+        if (!initialized) return "";
+        return CobblemonNameUtil.getNatureName(CobblemonBasePokemonUtil.getNature(pokemon));
     }
 
     public static String getMintedNatureName(@NotNull Pokemon pokemon) {
-        Nature mintedNature = BasePokemonUtil.getMintedNature(pokemon);
-        return mintedNature != null ? PokemonNameUtil.getNatureName(mintedNature) : none;
+        if (!initialized) return none;
+        Nature mintedNature = CobblemonBasePokemonUtil.getMintedNature(pokemon);
+        return mintedNature != null ? CobblemonNameUtil.getNatureName(mintedNature) : none;
     }
 
     /**
@@ -285,7 +322,8 @@ public class PokemonUtil {
      * @return 性格效果描述字符串
      */
     public static String getNatureType(@NotNull Pokemon pokemon) {
-        return getNatureType(BasePokemonUtil.getNature(pokemon));
+        if (!initialized) return natureTypeBalanced;
+        return getNatureType(CobblemonBasePokemonUtil.getNature(pokemon));
     }
 
     private static String getNatureType(@NotNull Nature nature) {
@@ -339,7 +377,8 @@ public class PokemonUtil {
     }
 
     public static String getMintedNatureType(@NotNull Pokemon pokemon) {
-        return getNatureType(BasePokemonUtil.getMintedNature(pokemon));
+        if (!initialized) return natureTypeBalanced;
+        return getNatureType(CobblemonBasePokemonUtil.getMintedNature(pokemon));
     }
 
     /**
@@ -349,7 +388,8 @@ public class PokemonUtil {
      * @return 招式名称字符串，如果不存在返回 none
      */
     public static String getMoveName(@NotNull Pokemon pokemon, int i) {
-        Move move = BasePokemonUtil.getMove(pokemon, i);
+        if (!initialized) return none;
+        Move move = CobblemonBasePokemonUtil.getMove(pokemon, i);
         if (move == null) return none;
         return move.getDisplayName().getString();
     }
@@ -362,7 +402,8 @@ public class PokemonUtil {
      * @return 招式属性类型名称字符串，如果不存在返回 none
      */
     public static String getMoveTypeName(@NotNull Pokemon pokemon, int i) {
-        ElementalType type = BasePokemonUtil.getMoveType(pokemon, i);
+        if (!initialized) return none;
+        ElementalType type = CobblemonBasePokemonUtil.getMoveType(pokemon, i);
         if (type == null) return none;
         return type.getDisplayName().getString();
     }
@@ -375,7 +416,8 @@ public class PokemonUtil {
      * @return 招式伤害类别名称字符串，如果不存在返回 none
      */
     public static String getMoveDamageCategoryName(@NotNull Pokemon pokemon, int i) {
-        DamageCategory category = BasePokemonUtil.getMoveDamageCategory(pokemon, i);
+        if (!initialized) return none;
+        DamageCategory category = CobblemonBasePokemonUtil.getMoveDamageCategory(pokemon, i);
         if (category == null) return none;
         return category.getDisplayName().getString();
     }
@@ -388,6 +430,7 @@ public class PokemonUtil {
      * @return 招式类别名称字符串，如果不存在返回 none
      */
     public static String getMoveCategoryName(@NotNull Pokemon pokemon, int i) {
+        if (!initialized) return none;
         return getMoveDamageCategoryName(pokemon, i);
     }
 
@@ -399,7 +442,8 @@ public class PokemonUtil {
      * @return 招式威力字符串，如果威力为0或负数返回 "-"
      */
     public static String getMovePowerToString(@NotNull Pokemon pokemon, int i) {
-        double power = BasePokemonUtil.getMovePower(pokemon, i);
+        if (!initialized) return "-";
+        double power = CobblemonBasePokemonUtil.getMovePower(pokemon, i);
         return power > 0 ? String.valueOf(power) : "-";
     }
 
@@ -411,7 +455,8 @@ public class PokemonUtil {
      * @return 招式命中率字符串（带百分号），如果命中率为0或负数返回 "-"
      */
     public static String getMoveAccuracyToString(@NotNull Pokemon pokemon, int i) {
-        double accuracy = BasePokemonUtil.getMoveAccuracy(pokemon, i);
+        if (!initialized) return "-";
+        double accuracy = CobblemonBasePokemonUtil.getMoveAccuracy(pokemon, i);
         return accuracy > 0 ? accuracy + "%" : "-";
     }
 
@@ -423,7 +468,8 @@ public class PokemonUtil {
      * @return 当前PP值字符串
      */
     public static String getMoveCurrentPpToString(@NotNull Pokemon pokemon, int i) {
-        return String.valueOf(BasePokemonUtil.getMoveCurrentPp(pokemon, i));
+        if (!initialized) return "0";
+        return String.valueOf(CobblemonBasePokemonUtil.getMoveCurrentPp(pokemon, i));
     }
 
     /**
@@ -434,7 +480,8 @@ public class PokemonUtil {
      * @return 最大PP值字符串
      */
     public static String getMoveMaxPpToString(@NotNull Pokemon pokemon, int i) {
-        return String.valueOf(BasePokemonUtil.getMoveMaxPp(pokemon, i));
+        if (!initialized) return "0";
+        return String.valueOf(CobblemonBasePokemonUtil.getMoveMaxPp(pokemon, i));
     }
 
     /**
@@ -445,8 +492,9 @@ public class PokemonUtil {
      * @return PP值比例字符串，格式为 "当前PP/最大PP"
      */
     public static String getMovePPToString(@NotNull Pokemon pokemon, int i) {
-        int currentPP = BasePokemonUtil.getMoveCurrentPp(pokemon, i);
-        int maxPP = BasePokemonUtil.getMoveMaxPp(pokemon, i);
+        if (!initialized) return "0/0";
+        int currentPP = CobblemonBasePokemonUtil.getMoveCurrentPp(pokemon, i);
+        int maxPP = CobblemonBasePokemonUtil.getMoveMaxPp(pokemon, i);
         return currentPP + "/" + maxPP;
     }
 
@@ -458,20 +506,22 @@ public class PokemonUtil {
      * @return 招式描述字符串
      */
     public static String getMoveDescription(@NotNull Pokemon pokemon, int i) {
-        return BasePokemonUtil.getMoveDescription(pokemon, i);
+        if (!initialized) return "";
+        return CobblemonBasePokemonUtil.getMoveDescription(pokemon, i);
     }
 
     /**
      * 获取宝可梦的主属性类型名称。
      *
      * @param pokemon 宝可梦对象，不能为 {@code null}。
-     * @return 返回主属性类型的显示名称（如“火”、“水”等）。
+     * @return 返回主属性类型的显示名称（如"火"、"水"等）。
      * @throws NullPointerException 如果传入的 pokemon 为 {@code null}，
      *                              或其主属性类型为 {@code null}（理论上不会发生，但为了安全起见进行检查）。
      */
     public static String getPrimaryTypeName(@NotNull Pokemon pokemon) {
+        if (!initialized) return "";
         // 使用 BasePokemonUtils 工具类获取宝可梦的主属性类型
-        ElementalType type = BasePokemonUtil.getPrimaryType(pokemon);
+        ElementalType type = CobblemonBasePokemonUtil.getPrimaryType(pokemon);
 
         // 获取该属性类型的本地化显示名称并转换为字符串形式返回
         return type.getDisplayName().getString();
@@ -481,12 +531,13 @@ public class PokemonUtil {
      * 获取宝可梦的副属性类型名称。部分宝可梦没有副属性，此时返回空字符串。
      *
      * @param pokemon 宝可梦对象，不能为 {@code null}。
-     * @return 返回副属性类型的显示名称（如“飞行”、“格斗”等），若无副属性则返回空字符串。
+     * @return 返回副属性类型的显示名称（如"飞行"、"格斗"等），若无副属性则返回空字符串。
      * @throws NullPointerException 如果传入的 pokemon 为 {@code null}。
      */
     public static String getSecondaryTypeName(@NotNull Pokemon pokemon) {
+        if (!initialized) return "";
         // 使用 BasePokemonUtils 工具类获取宝可梦的副属性类型
-        ElementalType type = BasePokemonUtil.getSecondaryType(pokemon);
+        ElementalType type = CobblemonBasePokemonUtil.getSecondaryType(pokemon);
 
         // 如果副属性不存在（type 为 null），返回空字符串；否则返回显示名称
         if (type == null) return "";
@@ -500,7 +551,8 @@ public class PokemonUtil {
      * @return 图鉴编号字符串
      */
     public static String getNationalPokedexIntegerToString(@NotNull Pokemon pokemon) {
-        return String.valueOf(BasePokemonUtil.getNationalPokedexNumber(pokemon));
+        if (!initialized) return "0";
+        return String.valueOf(CobblemonBasePokemonUtil.getNationalPokedexNumber(pokemon));
     }
 
     /**
@@ -509,7 +561,8 @@ public class PokemonUtil {
      * @return 亲密度字符串
      */
     public static String getFriendshipToString(@NotNull Pokemon pokemon) {
-        return String.valueOf(BasePokemonUtil.getFriendship(pokemon));
+        if (!initialized) return "0";
+        return String.valueOf(CobblemonBasePokemonUtil.getFriendship(pokemon));
     }
 
     /**
@@ -520,7 +573,8 @@ public class PokemonUtil {
      * @return Dmax级别的字符串表示
      */
     public static String getDmaxLevelToString(@NotNull Pokemon pokemon) {
-        return String.valueOf(BasePokemonUtil.getDmaxLevel(pokemon));
+        if (!initialized) return "0";
+        return String.valueOf(CobblemonBasePokemonUtil.getDmaxLevel(pokemon));
     }
 
     /**
@@ -529,7 +583,8 @@ public class PokemonUtil {
      * @return 当前经验值字符串
      */
     public static String getExpToString(@NotNull Pokemon pokemon) {
-        return String.valueOf(BasePokemonUtil.getExp(pokemon));
+        if (!initialized) return "0";
+        return String.valueOf(CobblemonBasePokemonUtil.getExp(pokemon));
     }
 
     /**
@@ -538,7 +593,8 @@ public class PokemonUtil {
      * @return 所需经验数量字符串
      */
     public static String getExperienceToLevelUpToString(@NotNull Pokemon pokemon) {
-        return String.valueOf(BasePokemonUtil.getExperienceToLevelUp(pokemon));
+        if (!initialized) return "0";
+        return String.valueOf(CobblemonBasePokemonUtil.getExperienceToLevelUp(pokemon));
     }
 
     /**
@@ -547,8 +603,9 @@ public class PokemonUtil {
      * @return 物品名称字符串，如果没有携带物返回 none
      */
     public static String getHeldItemName(@NotNull Pokemon pokemon) {
-        class_1799 heldItem = BasePokemonUtil.getHeldItem(pokemon);
-        return PokemonNameUtil.getItemName(heldItem);
+        if (!initialized) return none;
+        class_1799 heldItem = CobblemonBasePokemonUtil.getHeldItem(pokemon);
+        return CobblemonNameUtil.getItemName(heldItem);
     }
 
     /**
@@ -557,7 +614,8 @@ public class PokemonUtil {
      * @return UUID 字符串
      */
     public static String getUUIDToString(@NotNull Pokemon pokemon) {
-        return BasePokemonUtil.getUUID(pokemon).toString();
+        if (!initialized) return "00000000-0000-0000-0000-000000000000";
+        return CobblemonBasePokemonUtil.getUUID(pokemon).toString();
     }
 
     /**
@@ -566,7 +624,8 @@ public class PokemonUtil {
      * @return 精灵球名称字符串
      */
     public static String getCaughtBallName(@NotNull Pokemon pokemon) {
-        return PokemonNameUtil.getPokeBallName(BasePokemonUtil.getCaughtBall(pokemon));
+        if (!initialized) return none;
+        return CobblemonNameUtil.getPokeBallName(CobblemonBasePokemonUtil.getCaughtBall(pokemon));
     }
 
     /**
@@ -575,7 +634,8 @@ public class PokemonUtil {
      * @return 实战 HP 字符串
      */
     public static String getStatHPToString(@NotNull Pokemon pokemon) {
-        return String.valueOf(BasePokemonUtil.getStatHP(pokemon));
+        if (!initialized) return "0";
+        return String.valueOf(CobblemonBasePokemonUtil.getStatHP(pokemon));
     }
 
     /**
@@ -584,7 +644,8 @@ public class PokemonUtil {
      * @return 实战攻击字符串
      */
     public static String getStatAttackToString(@NotNull Pokemon pokemon) {
-        return String.valueOf(BasePokemonUtil.getStatAttack(pokemon));
+        if (!initialized) return "0";
+        return String.valueOf(CobblemonBasePokemonUtil.getStatAttack(pokemon));
     }
 
     /**
@@ -593,7 +654,8 @@ public class PokemonUtil {
      * @return 实战防御字符串
      */
     public static String getStatDefenceToString(@NotNull Pokemon pokemon) {
-        return String.valueOf(BasePokemonUtil.getStatDefence(pokemon));
+        if (!initialized) return "0";
+        return String.valueOf(CobblemonBasePokemonUtil.getStatDefence(pokemon));
     }
 
     /**
@@ -602,7 +664,8 @@ public class PokemonUtil {
      * @return 实战特攻字符串
      */
     public static String getStatSpecialAttackToString(@NotNull Pokemon pokemon) {
-        return String.valueOf(BasePokemonUtil.getStatSpecialAttack(pokemon));
+        if (!initialized) return "0";
+        return String.valueOf(CobblemonBasePokemonUtil.getStatSpecialAttack(pokemon));
     }
 
     /**
@@ -611,7 +674,8 @@ public class PokemonUtil {
      * @return 实战特防字符串
      */
     public static String getStatSpecialDefenceToString(@NotNull Pokemon pokemon) {
-        return String.valueOf(BasePokemonUtil.getStatSpecialDefence(pokemon));
+        if (!initialized) return "0";
+        return String.valueOf(CobblemonBasePokemonUtil.getStatSpecialDefence(pokemon));
     }
 
     /**
@@ -620,7 +684,8 @@ public class PokemonUtil {
      * @return 实战速度字符串
      */
     public static String getStatSpeedToString(@NotNull Pokemon pokemon) {
-        return String.valueOf(BasePokemonUtil.getStatSpeed(pokemon));
+        if (!initialized) return "0";
+        return String.valueOf(CobblemonBasePokemonUtil.getStatSpeed(pokemon));
     }
 
     /**
@@ -629,7 +694,8 @@ public class PokemonUtil {
      * @return 基础 HP 字符串
      */
     public static String getBaseStatHPToString(@NotNull Pokemon pokemon) {
-        return String.valueOf(BasePokemonUtil.getBaseStatHP(pokemon));
+        if (!initialized) return "0";
+        return String.valueOf(CobblemonBasePokemonUtil.getBaseStatHP(pokemon));
     }
 
     /**
@@ -638,7 +704,8 @@ public class PokemonUtil {
      * @return 基础攻击字符串
      */
     public static String getBaseStatAttackToString(@NotNull Pokemon pokemon) {
-        return String.valueOf(BasePokemonUtil.getBaseStatAttack(pokemon));
+        if (!initialized) return "0";
+        return String.valueOf(CobblemonBasePokemonUtil.getBaseStatAttack(pokemon));
     }
 
     /**
@@ -647,7 +714,8 @@ public class PokemonUtil {
      * @return 基础防御字符串
      */
     public static String getBaseStatDefenceToString(@NotNull Pokemon pokemon) {
-        return String.valueOf(BasePokemonUtil.getBaseStatDefence(pokemon));
+        if (!initialized) return "0";
+        return String.valueOf(CobblemonBasePokemonUtil.getBaseStatDefence(pokemon));
     }
 
     /**
@@ -656,7 +724,8 @@ public class PokemonUtil {
      * @return 基础特攻字符串
      */
     public static String getBaseStatSpecialAttackToString(@NotNull Pokemon pokemon) {
-        return String.valueOf(BasePokemonUtil.getBaseStatSpecialAttack(pokemon));
+        if (!initialized) return "0";
+        return String.valueOf(CobblemonBasePokemonUtil.getBaseStatSpecialAttack(pokemon));
     }
 
     /**
@@ -665,7 +734,8 @@ public class PokemonUtil {
      * @return 基础特防字符串
      */
     public static String getBaseStatSpecialDefenceToString(@NotNull Pokemon pokemon) {
-        return String.valueOf(BasePokemonUtil.getBaseStatSpecialDefence(pokemon));
+        if (!initialized) return "0";
+        return String.valueOf(CobblemonBasePokemonUtil.getBaseStatSpecialDefence(pokemon));
     }
 
     /**
@@ -674,7 +744,8 @@ public class PokemonUtil {
      * @return 基础速度字符串
      */
     public static String getBaseStatSpeedToString(@NotNull Pokemon pokemon) {
-        return String.valueOf(BasePokemonUtil.getBaseStatSpeed(pokemon));
+        if (!initialized) return "0";
+        return String.valueOf(CobblemonBasePokemonUtil.getBaseStatSpeed(pokemon));
     }
 
     /**
@@ -683,7 +754,8 @@ public class PokemonUtil {
      * @return 属性总和字符串
      */
     public static String getBaseStatSumToString(@NotNull Pokemon pokemon) {
-        return String.valueOf(BasePokemonUtil.getBaseStatSum(pokemon));
+        if (!initialized) return "0";
+        return String.valueOf(CobblemonBasePokemonUtil.getBaseStatSum(pokemon));
     }
 
     /**
@@ -692,7 +764,8 @@ public class PokemonUtil {
      * @return 捕获率字符串
      */
     public static String getCatchRateToString(@NotNull Pokemon pokemon) {
-        return String.valueOf(BasePokemonUtil.getCatchRate(pokemon));
+        if (!initialized) return "0";
+        return String.valueOf(CobblemonBasePokemonUtil.getCatchRate(pokemon));
     }
 
     /**
@@ -701,7 +774,8 @@ public class PokemonUtil {
      * @return 玩家名称字符串，没有则返回 none
      */
     public static String getOwnerPlayerName(@NotNull Pokemon pokemon) {
-        OfflinePlayer player = BasePokemonUtil.getBukkitOfflineOwnerPlayer(pokemon);
+        if (!initialized) return none;
+        OfflinePlayer player = CobblemonBasePokemonUtil.getBukkitOfflineOwnerPlayer(pokemon);
         if (player == null) return none;
         return player.getName();
     }
@@ -716,7 +790,8 @@ public class PokemonUtil {
      * @return 如果交易可用返回yes，否则返回no
      */
     public static String getTradeAbleToString(@NotNull Pokemon pokemon) {
-        return BasePokemonUtil.isTradeAble(pokemon) ? yes : no;
+        if (!initialized) return no;
+        return CobblemonBasePokemonUtil.isTradeAble(pokemon) ? yes : no;
     }
 
 }

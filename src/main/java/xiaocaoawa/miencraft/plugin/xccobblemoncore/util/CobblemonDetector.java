@@ -2,6 +2,7 @@ package xiaocaoawa.miencraft.plugin.xccobblemoncore.util;
 
 import com.cobblemon.mod.common.Cobblemon;
 import org.bukkit.plugin.Plugin;
+import xiaocaoawa.miencraft.plugin.xccobblemoncore.util.CobblemonUtil.*;
 
 /**
  * Cobblemon模组检测工具类
@@ -14,6 +15,22 @@ public final class CobblemonDetector {
 
     // 私有构造函数防止实例化
     private CobblemonDetector() {}
+
+    /**
+     * 初始化所有Cobblemon工具类
+     * 此方法应在 Cobblemon 模组检测成功后调用
+     */
+    private static void initialize() {
+        CobblemonBasePokemonUtil.setInitialized();
+        CobblemonEntityUtil.setInitialized();
+        CobblemonEventHandler.setInitialized();
+        CobblemonItemUtil.setInitialized();
+        CobblemonLocalizedName.setInitialized();
+        CobblemonNameUtil.setInitialized();
+        CobblemonPartyUtil.setInitialized();
+        CobblemonUtil.setInitialized();
+        CobblemonResourceUtil.setInitialized();
+    }
 
     /**
      * 检测Cobblemon模组是否可用（带日志输出）
@@ -32,18 +49,18 @@ public final class CobblemonDetector {
     }
 
     /**
-     * 检测Cobblemon模组并在失败时禁用插件
+     * 检测Cobblemon模组并在失败时提醒
      * 
      * @param plugin 插件实例
-     * @return 如果检测成功返回true，如果检测失败并禁用插件返回false
+     * @return 如果检测成功返回true，如果检测失败返回false
      */
     public static boolean checkCobblemonOrDisable(Plugin plugin) {
         if (!isCobblemonAvailable(plugin)) {
-            plugin.getLogger().severe("未检测到Cobblemon模组，插件无法启动！");
-            plugin.getServer().getPluginManager().disablePlugin(plugin);
+            plugin.getLogger().warning("未检测到Cobblemon模组，不启用方可梦相关方法");
             return false;
         }
-        plugin.getLogger().info("Cobblemon模组检测成功，XCCobblemonCore启动！");
+        plugin.getLogger().info("已检测到Cobblemon模组,启动方可梦相关方法");
+        initialize();
         return true;
     }
 }

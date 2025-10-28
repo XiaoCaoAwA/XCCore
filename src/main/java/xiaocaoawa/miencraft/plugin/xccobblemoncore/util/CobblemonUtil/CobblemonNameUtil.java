@@ -1,4 +1,4 @@
-package xiaocaoawa.miencraft.plugin.xccobblemoncore.util;
+package xiaocaoawa.miencraft.plugin.xccobblemoncore.util.CobblemonUtil;
 
 import com.cobblemon.mod.common.api.abilities.Ability;
 import com.cobblemon.mod.common.pokeball.PokeBall;
@@ -16,10 +16,21 @@ import org.jetbrains.annotations.NotNull;
  * @author XiaoCaoAwA
  * @version 1.0
  */
-public final class PokemonNameUtil {
+public final class CobblemonNameUtil {
+
+    // 静态初始化标志，控制功能是否可用
+    private static boolean initialized = false;
 
     // 私有构造函数防止实例化
-    private PokemonNameUtil() {}
+    private CobblemonNameUtil() {}
+
+    /**
+     * 设置初始化状态
+     * 只有在 Cobblemon 模组检测成功后才应该调用此方法
+     */
+    public static void setInitialized() {
+        initialized = true;
+    }
 
     /**
      * 获取宝可梦种族的本地化名称
@@ -28,6 +39,7 @@ public final class PokemonNameUtil {
      * @return 本地化的种族名称
      */
     public static String getPokemonName(@NotNull Species species) {
+        if (!initialized) return "";
         return species.getTranslatedName().getString();
     }
 
@@ -38,6 +50,7 @@ public final class PokemonNameUtil {
      * @return 本地化的性格名称
      */
     public static String getNatureName(@NotNull Nature nature) {
+        if (!initialized) return "";
         return MiscUtilsKt.asTranslated(nature.getDisplayName()).getString();
     }
 
@@ -48,6 +61,7 @@ public final class PokemonNameUtil {
      * @return 本地化的性别名称
      */
     public static String getGenderName(@NotNull Gender gender) {
+        if (!initialized) return "";
         return MiscUtilsKt.asTranslated("cobblemon.gender." + gender.name().toLowerCase()).getString();
     }
 
@@ -58,6 +72,7 @@ public final class PokemonNameUtil {
      * @return 本地化的物品名称
      */
     public static String getItemName(@NotNull class_1799 item) {
+        if (!initialized) return "";
         return MiscUtilsKt.asTranslated(item.method_7922()).getString();
     }
 
@@ -68,6 +83,7 @@ public final class PokemonNameUtil {
      * @return 本地化的精灵球名称
      */
     public static String getPokeBallName(@NotNull PokeBall pokeBall) {
+        if (!initialized) return "";
         return MiscUtilsKt.asTranslated("item.cobblemon." + pokeBall.getName().method_12832()).getString();
     }
 
@@ -78,6 +94,7 @@ public final class PokemonNameUtil {
      * @return 本地化的特性名称
      */
     public static String getAbilityName(@NotNull Ability ability) {
+        if (!initialized) return "";
         return MiscUtilsKt.asTranslated(ability.getDisplayName()).getString();
     }
 }

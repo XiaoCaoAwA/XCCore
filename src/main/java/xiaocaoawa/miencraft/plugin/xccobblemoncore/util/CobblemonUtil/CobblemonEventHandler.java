@@ -1,4 +1,4 @@
-package xiaocaoawa.miencraft.plugin.xccobblemoncore.util;
+package xiaocaoawa.miencraft.plugin.xccobblemoncore.util.CobblemonUtil;
 
 import com.cobblemon.mod.common.api.Priority;
 import com.cobblemon.mod.common.api.reactive.Observable;
@@ -26,7 +26,20 @@ public class CobblemonEventHandler {
      */
     private static final Map<Plugin, List<ObservableSubscription<?>>> map = new HashMap<>();
 
+    /**
+     * 初始化标志，控制事件处理功能是否可用
+     */
+    private static boolean initialized = false;
+
     private CobblemonEventHandler() {}
+
+    /**
+     * 设置初始化状态为已初始化
+     * 此方法应在 Cobblemon 模组检测成功后调用
+     */
+    public static void setInitialized() {
+        initialized = true;
+    }
 
     /**
      * 为指定插件注册Cobblemon事件监听器
@@ -38,6 +51,7 @@ public class CobblemonEventHandler {
      * @param handler 事件处理器函数
      */
     public static <T> void registerCobblemonEvent(Plugin plugin, Observable<T> observable, Priority priority, Consumer<T> handler) {
+        if (!initialized) return;
         ObservableSubscription<T> subscribe = observable.subscribe(priority, event -> {
             handler.accept(event);
             return Unit.INSTANCE;
@@ -52,6 +66,7 @@ public class CobblemonEventHandler {
      * @param plugin 插件实例
      */
     public static void unregisterCobblemonEvent(Plugin plugin) {
+        if (!initialized) return;
         List<ObservableSubscription<?>> list = map.get(plugin);
         if (list == null) return;
         for (ObservableSubscription<?> subscription : list) {
@@ -64,6 +79,7 @@ public class CobblemonEventHandler {
      * 通常在服务器关闭时调用
      */
     public static void unregisterAllCobblemonEvent() {
+        if (!initialized) return;
         for (List<ObservableSubscription<?>> list : map.values()) {
             for (ObservableSubscription<?> subscription : list) {
                 subscription.unsubscribe();
@@ -79,6 +95,7 @@ public class CobblemonEventHandler {
      * @return 插件的事件订阅列表
      */
     public static List<ObservableSubscription<?>> getSubscriptions(Plugin plugin) {
+        if (!initialized) return new ArrayList<>();
         return map.computeIfAbsent(plugin, k -> new ArrayList<>());
     }
 
