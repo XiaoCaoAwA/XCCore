@@ -46,9 +46,9 @@ public final class XCCore extends JavaPlugin {
         consoleSender.sendMessage("§7[§aXCCore§7] §b┃┃████████████┃");
         consoleSender.sendMessage("§7[§aXCCore§7] §b┗┻━━━━━━━━━━━━┛");
         consoleSender.sendMessage("§7[§aXCCore§7] §b欢迎使用XCCore插件");
-        consoleSender.sendMessage("§7[§aXCCore§7] §b作者:XiaoCaoAwA 感谢您的支持！");
-        consoleSender.sendMessage("§7[§aXCCore§7] §b加入官方插件交流群：966720491 快速反馈问题和需求");
-        consoleSender.sendMessage("§7[§aXCCore§7] §b官方插件交流群有许多有趣的小插件等您来获取哟！~");
+        consoleSender.sendMessage("§7[§aXCCore§7] §b作者:XiaoCaoAwA");
+        consoleSender.sendMessage("§7[§aXCCore§7] §b加入官方插件交流群：966720491");
+        consoleSender.sendMessage("§7[§aXCCore§7] §b本插件为前置插件,没有实际功能！");
     }
 
 }

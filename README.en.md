@@ -1,7 +1,7 @@
-# XCCobblemonCore
+# XCCore
 
 #### Description
-方可梦插件系列的前置插件
+方可梦插件等系列的前置插件
 
 #### Software Architecture
 Software architecture description

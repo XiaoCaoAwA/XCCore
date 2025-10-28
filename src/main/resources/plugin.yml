@@ -1,4 +1,4 @@
-name: XCCobblemonCore
+name: XCCore
 version: '1.0'
 main: xiaocaoawa.miencraft.plugin.xccore.XCCore
 api-version: '1.21'
