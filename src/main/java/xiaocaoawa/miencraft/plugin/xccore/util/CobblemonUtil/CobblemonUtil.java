@@ -1,4 +1,4 @@
-package xiaocaoawa.miencraft.plugin.xccobblemoncore.util.CobblemonUtil;
+package xiaocaoawa.miencraft.plugin.xccore.util.CobblemonUtil;
 
 import com.cobblemon.mod.common.api.moves.Move;
 import com.cobblemon.mod.common.api.moves.categories.DamageCategory;

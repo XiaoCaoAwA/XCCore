@@ -1,4 +1,4 @@
-package xiaocaoawa.miencraft.plugin.xccobblemoncore.inventory;
+package xiaocaoawa.miencraft.plugin.xccore.inventory;
 
 import lombok.Getter;
 import org.bukkit.entity.Player;

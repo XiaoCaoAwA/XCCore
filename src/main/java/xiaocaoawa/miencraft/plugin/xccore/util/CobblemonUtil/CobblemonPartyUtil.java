@@ -1,4 +1,4 @@
-package xiaocaoawa.miencraft.plugin.xccobblemoncore.util.CobblemonUtil;
+package xiaocaoawa.miencraft.plugin.xccore.util.CobblemonUtil;
 
 import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
@@ -7,7 +7,7 @@ import com.cobblemon.mod.common.pokemon.Species;
 import com.cobblemon.mod.common.util.LocalizationUtilsKt;
 import net.minecraft.class_3222;
 import org.bukkit.entity.Player;
-import xiaocaoawa.miencraft.plugin.xccobblemoncore.util.BukkitNmsUtil.BukkitNmsConverter;
+import xiaocaoawa.miencraft.plugin.xccore.util.BukkitNmsUtil.BukkitNmsConverter;
 
 import java.util.ArrayList;
 import java.util.List;

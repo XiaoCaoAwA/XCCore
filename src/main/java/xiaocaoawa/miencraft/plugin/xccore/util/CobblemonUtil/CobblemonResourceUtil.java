@@ -1,4 +1,4 @@
-package xiaocaoawa.miencraft.plugin.xccobblemoncore.util.CobblemonUtil;
+package xiaocaoawa.miencraft.plugin.xccore.util.CobblemonUtil;
 
 import com.cobblemon.mod.common.util.IdentifierExtensionsKt;
 import net.minecraft.class_2960;

@@ -1,4 +1,4 @@
-package xiaocaoawa.miencraft.plugin.xccobblemoncore.util.CobblemonUtil;
+package xiaocaoawa.miencraft.plugin.xccore.util.CobblemonUtil;
 
 import com.cobblemon.mod.common.CobblemonEntities;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
@@ -9,7 +9,7 @@ import org.bukkit.World;
 import org.bukkit.craftbukkit.v1_21_R1.entity.CraftEntity;
 import org.bukkit.entity.Entity;
 import org.jetbrains.annotations.NotNull;
-import xiaocaoawa.miencraft.plugin.xccobblemoncore.util.BukkitNmsUtil.BukkitNmsConverter;
+import xiaocaoawa.miencraft.plugin.xccore.util.BukkitNmsUtil.BukkitNmsConverter;
 
 /**
  * Cobblemon宝可梦实体工具类

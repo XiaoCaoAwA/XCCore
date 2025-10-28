@@ -1,4 +1,4 @@
-package xiaocaoawa.miencraft.plugin.xccobblemoncore.util.BukkitNmsUtil;
+package xiaocaoawa.miencraft.plugin.xccore.util.BukkitNmsUtil;
 
 import net.minecraft.*;
 import net.minecraft.server.level.EntityPlayer;

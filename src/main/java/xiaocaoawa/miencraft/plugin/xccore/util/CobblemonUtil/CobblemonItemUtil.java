@@ -1,4 +1,4 @@
-package xiaocaoawa.miencraft.plugin.xccobblemoncore.util.CobblemonUtil;
+package xiaocaoawa.miencraft.plugin.xccore.util.CobblemonUtil;
 
 import com.cobblemon.mod.common.item.PokemonItem;
 import com.cobblemon.mod.common.pokeball.PokeBall;
@@ -9,7 +9,7 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
-import xiaocaoawa.miencraft.plugin.xccobblemoncore.util.BukkitNmsUtil.BukkitNmsConverter;
+import xiaocaoawa.miencraft.plugin.xccore.util.BukkitNmsUtil.BukkitNmsConverter;
 
 /**
  * Cobblemon宝可梦物品工具类

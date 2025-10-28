@@ -1,10 +1,10 @@
-package xiaocaoawa.miencraft.plugin.xccobblemoncore.inventory;
+package xiaocaoawa.miencraft.plugin.xccore.inventory;
 
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
-import xiaocaoawa.miencraft.plugin.xccobblemoncore.XCCobblemonCore;
+import xiaocaoawa.miencraft.plugin.xccore.XCCore;
 
 /**
  * @author XiaoCaoAwA
@@ -30,7 +30,7 @@ public abstract class XCInventory {
 
     public final void openInventory(Player player) {
         player.getOpenInventory().close();
-        XCCobblemonCore.getXCInventoryMap().put(player, this);
+        XCCore.getXCInventoryMap().put(player, this);
         player.openInventory(inventory);
     }
 

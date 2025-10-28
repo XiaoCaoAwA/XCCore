@@ -1,8 +1,8 @@
-package xiaocaoawa.miencraft.plugin.xccobblemoncore.util;
+package xiaocaoawa.miencraft.plugin.xccore.util;
 
 import com.cobblemon.mod.common.Cobblemon;
 import org.bukkit.plugin.Plugin;
-import xiaocaoawa.miencraft.plugin.xccobblemoncore.util.CobblemonUtil.*;
+import xiaocaoawa.miencraft.plugin.xccore.util.CobblemonUtil.*;
 
 /**
  * Cobblemon模组检测工具类
