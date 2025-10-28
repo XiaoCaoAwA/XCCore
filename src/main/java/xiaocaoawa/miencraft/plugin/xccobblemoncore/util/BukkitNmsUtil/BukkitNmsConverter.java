@@ -87,8 +87,6 @@ public final class BukkitNmsConverter {
         return class_1297.class.cast(((CraftEntity) entity).getHandle());
     }
 
-
-
     /**
      * 将NMS物品堆叠转换为Bukkit物品堆叠
      * 
@@ -111,12 +109,6 @@ public final class BukkitNmsConverter {
         return class_1799.class.cast(nmsItem);
     }
 
-
-
-
-
-
-
     /**
      * 获取默认世界的注册表访问器
      * 使用服务器中的第一个世界作为默认世界
@@ -137,8 +129,6 @@ public final class BukkitNmsConverter {
     public static class_5455 getRegistryAccess(World world) {
         return toWorld(world).method_30349();
     }
-
-
 
     /**
      * 获取指定位置的服务器端生物群系
