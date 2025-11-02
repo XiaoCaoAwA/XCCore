@@ -11,7 +11,6 @@ import xiaocaoawa.miencraft.plugin.xccore.util.BukkitNmsUtil.BukkitNmsConverter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
 
 /**
  * 宝可梦队伍工具类
@@ -45,67 +44,24 @@ public class CobblemonPartyUtil {
     }
 
     /**
-     * 检查玩家队伍中是否存在满足条件的宝可梦
+     * 获取玩家队伍中的所有宝可梦（不包含空位）
      * @param player 玩家
-     * @param condition 检查条件
-     * @return 是否存在满足条件的宝可梦
+     * @return 玩家队伍中的所有宝可梦列表，如果获取失败则返回空列表
      */
-    public static boolean hasPokemonMatching(Player player, Predicate<Pokemon> condition) {
-        if (!initialized) return false;
-        PlayerPartyStore partyStore = getPlayerPartyStore(player);
-        if (partyStore == null) {
-            return false;
-        }
-
-        for (Pokemon pokemon : partyStore) {
-            if (pokemon != null && condition.test(pokemon)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * 获取玩家队伍中第一个满足条件的宝可梦
-     * @param player 玩家
-     * @param condition 检查条件
-     * @return 满足条件的宝可梦，如果没有则返回null
-     */
-    public static Pokemon getFirstPokemonMatching(Player player, Predicate<Pokemon> condition) {
-        if (!initialized) return null;
-        PlayerPartyStore partyStore = getPlayerPartyStore(player);
-        if (partyStore == null) {
-            return null;
-        }
-
-        for (Pokemon pokemon : partyStore) {
-            if (pokemon != null && condition.test(pokemon)) {
-                return pokemon;
-            }
-        }
-        return null;
-    }
-
-    /**
-     * 获取玩家队伍中所有满足条件的宝可梦
-     * @param player 玩家
-     * @param condition 检查条件
-     * @return 满足条件的宝可梦列表
-     */
-    public static List<Pokemon> getAllPokemonMatching(Player player, Predicate<Pokemon> condition) {
+    public static List<Pokemon> getAllPokemon(Player player) {
         if (!initialized) return new ArrayList<>();
-        List<Pokemon> matchingPokemon = new ArrayList<>();
+        List<Pokemon> allPokemon = new ArrayList<>();
         PlayerPartyStore partyStore = getPlayerPartyStore(player);
         if (partyStore == null) {
-            return matchingPokemon;
+            return allPokemon;
         }
 
         for (Pokemon pokemon : partyStore) {
-            if (pokemon != null && condition.test(pokemon)) {
-                matchingPokemon.add(pokemon);
+            if (pokemon != null) {
+                allPokemon.add(pokemon);
             }
         }
-        return matchingPokemon;
+        return allPokemon;
     }
 
     /**
@@ -115,7 +71,17 @@ public class CobblemonPartyUtil {
      */
     public static boolean hasLegendaryPokemon(Player player) {
         if (!initialized) return false;
-        return hasPokemonMatching(player, Pokemon::isLegendary);
+        PlayerPartyStore partyStore = getPlayerPartyStore(player);
+        if (partyStore == null) {
+            return false;
+        }
+
+        for (Pokemon pokemon : partyStore) {
+            if (pokemon != null && pokemon.isLegendary()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -125,7 +91,17 @@ public class CobblemonPartyUtil {
      */
     public static Pokemon getFirstLegendaryPokemon(Player player) {
         if (!initialized) return null;
-        return getFirstPokemonMatching(player, Pokemon::isLegendary);
+        PlayerPartyStore partyStore = getPlayerPartyStore(player);
+        if (partyStore == null) {
+            return null;
+        }
+
+        for (Pokemon pokemon : partyStore) {
+            if (pokemon != null && pokemon.isLegendary()) {
+                return pokemon;
+            }
+        }
+        return null;
     }
 
     /**
@@ -146,7 +122,18 @@ public class CobblemonPartyUtil {
      */
     public static List<Pokemon> getAllLegendaryPokemon(Player player) {
         if (!initialized) return new ArrayList<>();
-        return getAllPokemonMatching(player, Pokemon::isLegendary);
+        List<Pokemon> legendaryPokemon = new ArrayList<>();
+        PlayerPartyStore partyStore = getPlayerPartyStore(player);
+        if (partyStore == null) {
+            return legendaryPokemon;
+        }
+
+        for (Pokemon pokemon : partyStore) {
+            if (pokemon != null && pokemon.isLegendary()) {
+                legendaryPokemon.add(pokemon);
+            }
+        }
+        return legendaryPokemon;
     }
 
     /**
@@ -156,7 +143,17 @@ public class CobblemonPartyUtil {
      */
     public static boolean hasUltraBeastPokemon(Player player) {
         if (!initialized) return false;
-        return hasPokemonMatching(player, Pokemon::isUltraBeast);
+        PlayerPartyStore partyStore = getPlayerPartyStore(player);
+        if (partyStore == null) {
+            return false;
+        }
+
+        for (Pokemon pokemon : partyStore) {
+            if (pokemon != null && pokemon.isUltraBeast()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -166,7 +163,17 @@ public class CobblemonPartyUtil {
      */
     public static Pokemon getFirstUltraBeastPokemon(Player player) {
         if (!initialized) return null;
-        return getFirstPokemonMatching(player, Pokemon::isUltraBeast);
+        PlayerPartyStore partyStore = getPlayerPartyStore(player);
+        if (partyStore == null) {
+            return null;
+        }
+
+        for (Pokemon pokemon : partyStore) {
+            if (pokemon != null && pokemon.isUltraBeast()) {
+                return pokemon;
+            }
+        }
+        return null;
     }
 
     /**
@@ -187,7 +194,18 @@ public class CobblemonPartyUtil {
      */
     public static List<Pokemon> getAllUltraBeastPokemon(Player player) {
         if (!initialized) return new ArrayList<>();
-        return getAllPokemonMatching(player, Pokemon::isUltraBeast);
+        List<Pokemon> ultraBeastPokemon = new ArrayList<>();
+        PlayerPartyStore partyStore = getPlayerPartyStore(player);
+        if (partyStore == null) {
+            return ultraBeastPokemon;
+        }
+
+        for (Pokemon pokemon : partyStore) {
+            if (pokemon != null && pokemon.isUltraBeast()) {
+                ultraBeastPokemon.add(pokemon);
+            }
+        }
+        return ultraBeastPokemon;
     }
 
     /**
@@ -197,7 +215,17 @@ public class CobblemonPartyUtil {
      */
     public static boolean hasMythicalPokemon(Player player) {
         if (!initialized) return false;
-        return hasPokemonMatching(player, Pokemon::isMythical);
+        PlayerPartyStore partyStore = getPlayerPartyStore(player);
+        if (partyStore == null) {
+            return false;
+        }
+
+        for (Pokemon pokemon : partyStore) {
+            if (pokemon != null && pokemon.isMythical()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -207,7 +235,17 @@ public class CobblemonPartyUtil {
      */
     public static Pokemon getFirstMythicalPokemon(Player player) {
         if (!initialized) return null;
-        return getFirstPokemonMatching(player, Pokemon::isMythical);
+        PlayerPartyStore partyStore = getPlayerPartyStore(player);
+        if (partyStore == null) {
+            return null;
+        }
+
+        for (Pokemon pokemon : partyStore) {
+            if (pokemon != null && pokemon.isMythical()) {
+                return pokemon;
+            }
+        }
+        return null;
     }
 
     /**
@@ -228,7 +266,18 @@ public class CobblemonPartyUtil {
      */
     public static List<Pokemon> getAllMythicalPokemon(Player player) {
         if (!initialized) return new ArrayList<>();
-        return getAllPokemonMatching(player, Pokemon::isMythical);
+        List<Pokemon> mythicalPokemon = new ArrayList<>();
+        PlayerPartyStore partyStore = getPlayerPartyStore(player);
+        if (partyStore == null) {
+            return mythicalPokemon;
+        }
+
+        for (Pokemon pokemon : partyStore) {
+            if (pokemon != null && pokemon.isMythical()) {
+                mythicalPokemon.add(pokemon);
+            }
+        }
+        return mythicalPokemon;
     }
 
     /**
@@ -238,7 +287,17 @@ public class CobblemonPartyUtil {
      */
     public static boolean hasShinyPokemon(Player player) {
         if (!initialized) return false;
-        return hasPokemonMatching(player, Pokemon::getShiny);
+        PlayerPartyStore partyStore = getPlayerPartyStore(player);
+        if (partyStore == null) {
+            return false;
+        }
+
+        for (Pokemon pokemon : partyStore) {
+            if (pokemon != null && pokemon.getShiny()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

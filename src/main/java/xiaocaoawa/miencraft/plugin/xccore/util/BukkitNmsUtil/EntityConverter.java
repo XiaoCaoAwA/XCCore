@@ -1,6 +1,8 @@
 package xiaocaoawa.miencraft.plugin.xccore.util.BukkitNmsUtil;
 
-import net.minecraft.*;
+
+import net.minecraft.class_1297;
+import net.minecraft.class_3222;
 import net.minecraft.server.level.EntityPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.craftbukkit.v1_21_R1.CraftServer;
