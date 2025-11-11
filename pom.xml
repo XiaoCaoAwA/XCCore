@@ -81,6 +81,20 @@
             <id>Fabric</id>
             <url>https://maven.fabricmc.net/</url>
         </repository>
+        <repository>
+            <id>coding-artifacts</id>
+            <url>https://seventeen-artist-maven.pkg.coding.net/repository/arcartx/public/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+        <repository>
+            <id>taboolib-repo</id>
+            <url>https://repo.tabooproject.org/repository/releases/</url>
+        </repository>
     </repositories>
 
 
@@ -185,6 +199,19 @@
             <groupId>me.clip</groupId>
             <artifactId>placeholderapi</artifactId>
             <version>2.11.6</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>priv.seventeen.artist.arcartx</groupId>
+            <artifactId>ArcartX</artifactId>
+            <version>1.8.653.23</version>
+            <classifier>api</classifier>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.izzel.taboolib</groupId>
+            <artifactId>platform-bukkit</artifactId>
+            <version>6.2.3-7105e58f</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

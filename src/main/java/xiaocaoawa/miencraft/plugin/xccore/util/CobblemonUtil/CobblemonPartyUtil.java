@@ -5,8 +5,10 @@ import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import com.cobblemon.mod.common.pokemon.Species;
 import com.cobblemon.mod.common.util.LocalizationUtilsKt;
+import net.minecraft.class_1799;
 import net.minecraft.class_3222;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import xiaocaoawa.miencraft.plugin.xccore.util.BukkitNmsUtil.BukkitNmsConverter;
 
 import java.util.ArrayList;
@@ -396,5 +398,159 @@ public class CobblemonPartyUtil {
         } catch (Exception e) {
             return species.getName();
         }
+    }
+
+    /**
+     * 获取指定位置宝可梦的携带物
+     * @param player 玩家
+     * @param position 位置（1-6）
+     * @return 宝可梦的携带物（Bukkit ItemStack），如果该位置没有宝可梦、位置无效或没有携带物则返回null
+     */
+    public static ItemStack getPokemonHeldItemAtPosition(Player player, int position) {
+        if (!initialized) return null;
+        PlayerPartyStore partyStore = getPlayerPartyStore(player);
+        if (partyStore == null) {
+            return null;
+        }
+
+        int index = position - 1;
+        if (index < 0 || index >= partyStore.size()) {
+            return null;
+        }
+
+        Pokemon pokemon = partyStore.get(index);
+        if (pokemon == null) {
+            return null;
+        }
+
+        class_1799 heldItem = pokemon.heldItem();
+        if (heldItem == null || heldItem.method_7960()) { // method_7960() = isEmpty()
+            return null;
+        }
+
+        return BukkitNmsConverter.toItemStack(heldItem);
+    }
+
+    /**
+     * 检查指定位置的宝可梦是否携带物品
+     * @param player 玩家
+     * @param position 位置（1-6）
+     * @return 是否携带物品
+     */
+    public static boolean hasPokemonHeldItemAtPosition(Player player, int position) {
+        if (!initialized) return false;
+        PlayerPartyStore partyStore = getPlayerPartyStore(player);
+        if (partyStore == null) {
+            return false;
+        }
+
+        int index = position - 1;
+        if (index < 0 || index >= partyStore.size()) {
+            return false;
+        }
+
+        Pokemon pokemon = partyStore.get(index);
+        if (pokemon == null) {
+            return false;
+        }
+
+        class_1799 heldItem = pokemon.heldItem();
+        return heldItem != null && !heldItem.method_7960(); // method_7960() = isEmpty()
+    }
+
+    /**
+     * 获取玩家队伍中所有宝可梦的携带物列表
+     * 注意：返回的列表长度等于队伍中实际宝可梦的数量，如果某个宝可梦没有携带物，对应位置为null
+     * @param player 玩家
+     * @return 携带物列表（Bukkit ItemStack），如果获取失败则返回空列表
+     */
+    public static List<ItemStack> getAllPokemonHeldItems(Player player) {
+        if (!initialized) return new ArrayList<>();
+        List<ItemStack> heldItems = new ArrayList<>();
+        PlayerPartyStore partyStore = getPlayerPartyStore(player);
+        if (partyStore == null) {
+            return heldItems;
+        }
+
+        for (Pokemon pokemon : partyStore) {
+            if (pokemon != null) {
+                class_1799 heldItem = pokemon.heldItem();
+                if (heldItem != null && !heldItem.method_7960()) { // method_7960() = isEmpty()
+                    heldItems.add(BukkitNmsConverter.toItemStack(heldItem));
+                } else {
+                    heldItems.add(null);
+                }
+            }
+        }
+        return heldItems;
+    }
+
+    /**
+     * 获取玩家队伍中所有携带了物品的宝可梦的携带物列表
+     * 注意：此方法只返回非空的携带物，不包含null值
+     * @param player 玩家
+     * @return 非空携带物列表（Bukkit ItemStack），如果获取失败则返回空列表
+     */
+    public static List<ItemStack> getAllNonEmptyPokemonHeldItems(Player player) {
+        if (!initialized) return new ArrayList<>();
+        List<ItemStack> heldItems = new ArrayList<>();
+        PlayerPartyStore partyStore = getPlayerPartyStore(player);
+        if (partyStore == null) {
+            return heldItems;
+        }
+
+        for (Pokemon pokemon : partyStore) {
+            if (pokemon != null) {
+                class_1799 heldItem = pokemon.heldItem();
+                if (heldItem != null && !heldItem.method_7960()) { // method_7960() = isEmpty()
+                    heldItems.add(BukkitNmsConverter.toItemStack(heldItem));
+                }
+            }
+        }
+        return heldItems;
+    }
+
+    /**
+     * 统计玩家队伍中携带物品的宝可梦数量
+     * @param player 玩家
+     * @return 携带物品的宝可梦数量
+     */
+    public static int countPokemonWithHeldItems(Player player) {
+        if (!initialized) return 0;
+        int count = 0;
+        PlayerPartyStore partyStore = getPlayerPartyStore(player);
+        if (partyStore == null) {
+            return count;
+        }
+
+        for (Pokemon pokemon : partyStore) {
+            if (pokemon != null) {
+                class_1799 heldItem = pokemon.heldItem();
+                if (heldItem != null && !heldItem.method_7960()) { // method_7960() = isEmpty()
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
+    /**
+     * 获取指定位置宝可梦携带物的名称
+     * @param player 玩家
+     * @param position 位置（1-6）
+     * @return 携带物的显示名称，如果没有携带物则返回空字符串
+     */
+    public static String getPokemonHeldItemNameAtPosition(Player player, int position) {
+        if (!initialized) return "";
+        ItemStack heldItem = getPokemonHeldItemAtPosition(player, position);
+        if (heldItem == null) {
+            return "";
+        }
+
+        if (heldItem.hasItemMeta() && heldItem.getItemMeta().hasDisplayName()) {
+            return heldItem.getItemMeta().getDisplayName();
+        }
+
+        return heldItem.getType().name();
     }
 }
